@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, Image } from 'react-native';
 import { SvgXml } from 'react-native-svg';
-import { Text } from '../../../components/Text.js';
+import Text from '../../../components/Text.jsx';
 import { CardBase, CardCover, CardDetails, IconsContainer, Rating, Open, Icon, Address } from './RestaurantCardStyles.jsx';
 import star from '../../../assets/star.js';
 import open from '../../../assets/open.js';

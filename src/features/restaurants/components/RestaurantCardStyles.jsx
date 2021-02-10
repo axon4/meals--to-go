@@ -3,6 +3,7 @@ import { Card } from 'react-native-paper';
 import { SvgXml } from 'react-native-svg';
 
 export const CardBase = styled(Card)`
+	margin-bottom: ${props => props.theme.spacing[3]}
 	background-color: ${props => props.theme.colours.background.primary}
 `;
 
