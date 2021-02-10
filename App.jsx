@@ -1,13 +1,20 @@
 import React from 'react';
-import { View, Text, StyleSheet } from 'react-native';
-import { StatusBar } from 'expo-status-bar';
+import { View, Text, StyleSheet, StatusBar, SafeAreaView } from 'react-native';
+import { StatusBar as ExpoStatusBar } from 'expo-status-bar';
 
 function App() {
 	return (
-		<View style={styles.container}>
-			<Text>Open up App.js to start working on your app!</Text>
-			<StatusBar style='auto' />
-		</View>
+		<>
+			<ExpoStatusBar style='auto' />
+			<SafeAreaView style={styles.container}>
+				<View style={styles.search}>
+					<Text>SEARCH</Text>
+				</View>
+				<View style={styles.list}>
+					<Text>LIST</Text>
+				</View>
+			</SafeAreaView>
+		</>
 	);
 };
 
@@ -16,7 +23,16 @@ const styles = StyleSheet.create({
 		flex: 1,
 		justifyContent: 'center',
 		alignItems: 'center',
-		backgroundColor: '#FFFFFF'
+		marginTop: StatusBar.currentHeight
+	},
+	search: {
+		padding: 16,
+		backgroundColor: 'green'
+	},
+	list: {
+		flex: 1,
+		padding: 16,
+		backgroundColor: 'blue'
 	}
 });
 
