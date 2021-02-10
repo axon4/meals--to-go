@@ -1,6 +1,6 @@
 import styled from 'styled-components/native';
 
-const Text = styled.Text`
+export const Text = styled.Text`
 	${({ theme }) => defaultTextStyles(theme)};
 	${({ variant, theme }) => variants[variant](theme)}
 `;
@@ -48,5 +48,3 @@ const variants = {
 	hint,
 	error
 };
-
-export default Text;
