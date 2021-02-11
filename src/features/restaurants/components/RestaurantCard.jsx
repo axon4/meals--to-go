@@ -26,7 +26,7 @@ const RestaurantCard = ({ restaurant = {} }) => {
 				<Text type='label'>{name}</Text>
 				<IconsContainer>
 					<Rating>
-						{[...Array(Math.floor(rating))].map((e, i) => (
+						{[...Array(Math.floor(rating))].map((empty, i) => (
 							<SvgXml key={i} xml={star} width={20} height={20} />
 						))}
 					</Rating>

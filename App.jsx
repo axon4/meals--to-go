@@ -10,6 +10,7 @@ import RestaurantsScreen from './src/features/restaurants/screens/RestaurantsScr
 import { Ionicons } from '@expo/vector-icons';
 import { Text } from 'react-native';
 import SafeArea from './src/components/SafeArea.jsx';
+import RestaurantsContextProvider from './src/services/restaurants/mock/restaurantsContext.jsx';
 
 const MapScreen = () => <SafeArea><Text>MAP</Text></SafeArea>
 const SettingsScreen = () => <SafeArea><Text>SETTINGS</Text></SafeArea>
@@ -40,19 +41,21 @@ function App() {
 		<>
 			<StatusBar style='auto' />
 			<ThemeProvider theme={theme}>
-				<NavigationContainer>
-					<Tab.Navigator
-						screenOptions={createScreenOptions}
-						tabBarOptions={{
-							activeTintColor: 'tomato',
-							inactiveTintColor: 'gray'
-						}}	
-					>
-						<Tab.Screen name='Restaurants' component={RestaurantsScreen} />
-						<Tab.Screen name='Map' component={MapScreen} />
-						<Tab.Screen name='Settings' component={SettingsScreen} />
-					</Tab.Navigator>
-				</NavigationContainer>
+				<RestaurantsContextProvider>
+					<NavigationContainer>
+						<Tab.Navigator
+							screenOptions={createScreenOptions}
+							tabBarOptions={{
+								activeTintColor: 'tomato',
+								inactiveTintColor: 'gray'
+							}}	
+						>
+							<Tab.Screen name='Restaurants' component={RestaurantsScreen} />
+							<Tab.Screen name='Map' component={MapScreen} />
+							<Tab.Screen name='Settings' component={SettingsScreen} />
+						</Tab.Navigator>
+					</NavigationContainer>
+				</RestaurantsContextProvider>
 			</ThemeProvider>
 		</>
 	);
