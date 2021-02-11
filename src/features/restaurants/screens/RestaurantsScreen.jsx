@@ -1,17 +1,14 @@
 import React, { useContext } from 'react';
-import { ActivityIndicator, FlatList } from 'react-native';
-import { RestaurantsContext } from '../../../services/restaurants/mock/restaurantsContext.jsx';
+import { TouchableOpacity, FlatList, ActivityIndicator } from 'react-native';
+import { RestaurantsContext } from '../../../services/restaurants/mock/RestaurantsContextProvider.jsx';
 import { Colors } from 'react-native-paper';
 import styled from 'styled-components/native';
 import Search from '../components/Search.jsx';
 import SafeArea from '../../../components/SafeArea.jsx';
 import RestaurantCard from '../components/RestaurantCard.jsx';
 
-const RestaurantsScreen = () => {
+const RestaurantsScreen = ({ navigation }) => {
 	const { restaurants, isLoading } = useContext(RestaurantsContext);
-
-	// console.clear()
-	// console.log('\n\n\n\n\n\n\n', Object.keys(restaurants[0]));
 
 	return (
 		<SafeArea>
@@ -23,7 +20,12 @@ const RestaurantsScreen = () => {
 			<Search />
 			<RestaurantsList
 				data={restaurants}
-				renderItem={({ item }) => <RestaurantCard restaurant={item} />}
+				renderItem={({ item }) => {
+					return (
+						<TouchableOpacity onPress={() => navigation.navigate('RestaurantDetails', {restaurant: item})}>
+							<RestaurantCard restaurant={item} />
+						</TouchableOpacity>
+				)}}
 				keyExtractor={item => item.name}
 			/>
 		</SafeArea>

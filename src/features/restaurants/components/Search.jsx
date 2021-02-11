@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext } from 'react';
-import { LocationContext } from '../../../services/location/locationContext';
+import { LocationContext } from '../../../services/location/LocationContextProvider';
 import { Searchbar } from 'react-native-paper';
 import styled from 'styled-components/native';
 
