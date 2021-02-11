@@ -4,13 +4,14 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { ThemeProvider } from 'styled-components';
 import { theme } from './src/infrastructure/theme/theme.js';
+import LocationContextProvider from './src/services/location/locationContext.jsx';
+import RestaurantsContextProvider from './src/services/restaurants/mock/restaurantsContext.jsx';
 import { useFonts as useLato, Lato_400Regular } from '@expo-google-fonts/lato';
 import { useFonts as useOswald, Oswald_400Regular } from '@expo-google-fonts/oswald';
 import RestaurantsScreen from './src/features/restaurants/screens/RestaurantsScreen.jsx';
 import { Ionicons } from '@expo/vector-icons';
 import { Text } from 'react-native';
 import SafeArea from './src/components/SafeArea.jsx';
-import RestaurantsContextProvider from './src/services/restaurants/mock/restaurantsContext.jsx';
 
 const MapScreen = () => <SafeArea><Text>MAP</Text></SafeArea>
 const SettingsScreen = () => <SafeArea><Text>SETTINGS</Text></SafeArea>
@@ -41,21 +42,23 @@ function App() {
 		<>
 			<StatusBar style='auto' />
 			<ThemeProvider theme={theme}>
-				<RestaurantsContextProvider>
-					<NavigationContainer>
-						<Tab.Navigator
-							screenOptions={createScreenOptions}
-							tabBarOptions={{
-								activeTintColor: 'tomato',
-								inactiveTintColor: 'gray'
-							}}	
-						>
-							<Tab.Screen name='Restaurants' component={RestaurantsScreen} />
-							<Tab.Screen name='Map' component={MapScreen} />
-							<Tab.Screen name='Settings' component={SettingsScreen} />
-						</Tab.Navigator>
-					</NavigationContainer>
-				</RestaurantsContextProvider>
+				<LocationContextProvider>
+					<RestaurantsContextProvider>
+						<NavigationContainer>
+							<Tab.Navigator
+								screenOptions={createScreenOptions}
+								tabBarOptions={{
+									activeTintColor: 'tomato',
+									inactiveTintColor: 'gray'
+								}}	
+							>
+								<Tab.Screen name='Restaurants' component={RestaurantsScreen} />
+								<Tab.Screen name='Map' component={MapScreen} />
+								<Tab.Screen name='Settings' component={SettingsScreen} />
+							</Tab.Navigator>
+						</NavigationContainer>
+					</RestaurantsContextProvider>
+				</LocationContextProvider>
 			</ThemeProvider>
 		</>
 	);

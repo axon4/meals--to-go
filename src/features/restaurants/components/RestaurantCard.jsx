@@ -9,6 +9,7 @@ import open from '../../../assets/open.js';
 const RestaurantCard = ({ restaurant = {} }) => {
 	const {
 		name = 'Afghan Kebab House',
+		placeId,
 		icon = 'https://maps.gstatic.com/mapfiles/place_api/icons/v1/png_71/lodging-71.png',
 		address = '36 Whitechapel Road',
 		rating = 4,
@@ -27,7 +28,12 @@ const RestaurantCard = ({ restaurant = {} }) => {
 				<IconsContainer>
 					<Rating>
 						{[...Array(Math.floor(rating))].map((empty, i) => (
-							<SvgXml key={i} xml={star} width={20} height={20} />
+							<SvgXml
+								key={`star-${placeId}-${i}`}
+								xml={star}
+								width={20}
+								height={20}
+							/>
 						))}
 					</Rating>
 					{isClosedTemporarily ? (
