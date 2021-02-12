@@ -1,14 +1,19 @@
-import React, { useContext } from 'react';
+import React, { useState, useContext } from 'react';
 import { TouchableOpacity, FlatList, ActivityIndicator } from 'react-native';
 import { RestaurantsContext } from '../../../services/restaurants/mock/RestaurantsContextProvider.jsx';
-import { Colors } from 'react-native-paper';
+import { FavouritesContext } from '../../../services/favourites/FavouritesContext.jsx';
 import styled from 'styled-components/native';
+import { Colors } from 'react-native-paper';
 import Search from '../components/Search.jsx';
 import SafeArea from '../../../components/SafeArea.jsx';
+import FavouritesBar from '../../../components/FavouritesBar.jsx';
 import RestaurantCard from '../components/RestaurantCard.jsx';
 
 const RestaurantsScreen = ({ navigation }) => {
 	const { restaurants, isLoading } = useContext(RestaurantsContext);
+	const { favourites } = useContext(FavouritesContext);
+
+	const [ isFavouritesExpanded, setIsFavouritesExpanded ] = useState(false);
 
 	return (
 		<SafeArea>
@@ -17,7 +22,16 @@ const RestaurantsScreen = ({ navigation }) => {
 					<Loading size={50} color={Colors.blue300} animating={true} />
 				</LoadingContainer>
 			) : null}
-			<Search />
+			<Search
+				isFavouritesExpanded={isFavouritesExpanded}
+				onFavouritesExpand={() => setIsFavouritesExpanded(!isFavouritesExpanded)}
+			/>
+			{isFavouritesExpanded ? (
+				<FavouritesBar
+					favourites={favourites}
+					onNavigate={navigation.navigate}
+				/>
+			) : null}
 			<RestaurantsList
 				data={restaurants}
 				renderItem={({ item }) => {

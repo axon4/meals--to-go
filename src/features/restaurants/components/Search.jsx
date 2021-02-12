@@ -1,9 +1,9 @@
 import React, { useState, useEffect, useContext } from 'react';
-import { LocationContext } from '../../../services/location/LocationContextProvider';
+import { LocationContext } from '../../../services/location/LocationContextProvider.jsx';
 import styled from 'styled-components/native';
 import { Searchbar } from 'react-native-paper';
 
-const Search = () => {
+const Search = ({ isFavouritesExpanded, onFavouritesExpand }) => {
 	const { query, search } = useContext(LocationContext);
 	const [ searchQuery, setSearchQuery ] = useState(query);
 
@@ -14,6 +14,8 @@ const Search = () => {
 	return (
 		<SearchContainer>
 			<Searchbar
+				icon={isFavouritesExpanded ? 'heart' : 'heart-outline'}
+				onIconPress={onFavouritesExpand}
 				value={searchQuery}
 				placeholder='Search Locations...'
 				onChangeText={text => setSearchQuery(text)}

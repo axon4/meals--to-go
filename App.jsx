@@ -2,6 +2,7 @@ import React from 'react';
 import { StatusBar } from 'expo-status-bar';
 import { ThemeProvider } from 'styled-components';
 import { theme } from './src/infrastructure/theme/theme.js';
+import FavouritesContextProvider from './src/services/favourites/FavouritesContext.jsx';
 import LocationContextProvider from './src/services/location/LocationContextProvider.jsx';
 import RestaurantsContextProvider from './src/services/restaurants/mock/RestaurantsContextProvider.jsx';
 import Navigation from './src/infrastructure/navigation/Navigation.jsx';
@@ -16,11 +17,13 @@ function App() {
 		<>
 			<StatusBar style='auto' />
 			<ThemeProvider theme={theme}>
-				<LocationContextProvider>
-					<RestaurantsContextProvider>
-						<Navigation />
-					</RestaurantsContextProvider>
-				</LocationContextProvider>
+				<FavouritesContextProvider>
+					<LocationContextProvider>
+						<RestaurantsContextProvider>
+							<Navigation />
+						</RestaurantsContextProvider>
+					</LocationContextProvider>
+				</FavouritesContextProvider>
 			</ThemeProvider>
 		</>
 	);

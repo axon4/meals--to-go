@@ -3,6 +3,7 @@ import { View, Image } from 'react-native';
 import { SvgXml } from 'react-native-svg';
 import Text from '../../../components/Text.jsx';
 import { CardBase, CardCover, CardDetails, IconsContainer, Rating, Open, Icon, Address } from './RestaurantCardStyles.jsx';
+import Favourite from '../../../components/Favourite.jsx';
 import star from '../../../assets/star.js';
 import open from '../../../assets/open.js';
 
@@ -22,6 +23,7 @@ const RestaurantCard = ({ restaurant = {} }) => {
 
 	return (
 		<CardBase elevation={5}>
+			<Favourite restaurant={restaurant} />
 			<CardCover key={name} source={{uri: photos[0]}} />
 			<CardDetails>
 				<Text type='label'>{name}</Text>

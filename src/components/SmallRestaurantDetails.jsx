@@ -1,11 +1,11 @@
 import React from 'react';
 import { Platform } from 'react-native';
-import styled from 'styled-components';
+import styled from 'styled-components/native';
 import WebView from 'react-native-webview';
 import Text from '../../src/components/Text.jsx';
 
-const SmallRestaurantDetails = ({ restaurant }) => {
-	const Image = Platform.OS === 'android' ? RestaurantWebView : RestaurantImage;
+const SmallRestaurantDetails = ({ restaurant, isMap }) => {
+	const Image = Platform.OS === 'android' && isMap ? RestaurantWebView : RestaurantImage;
 
 	return (
 		<Item>
