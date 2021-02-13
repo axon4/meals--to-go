@@ -41,7 +41,7 @@ const AuthenticationContextProvider = ({ children }) => {
 	};
 
 	persistUser(persistedUser => {
-		if (user) {
+		if (persistedUser) {
 			setUser(persistedUser);
 		};
 		
