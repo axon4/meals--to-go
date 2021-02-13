@@ -9,12 +9,6 @@ const FavouritesContextProvider = ({ children }) => {
 
 	const [ favourites, setFavourites ] = useState([]);
 
-	useEffect(() => {
-		if (user) {
-			loadFavourites();
-		};
-	}, [user]);
-
 	const addFavourite = restaurant => setFavourites([...favourites, restaurant]);
 
 	const removeFavourite = restaurant => {
@@ -47,10 +41,16 @@ const FavouritesContextProvider = ({ children }) => {
 	};
 
 	useEffect(() => {
-		if (user) {
-			saveFavourites(favourites);
+		if (user && user.uid && favourites.length) {
+			saveFavourites(user.uid, favourites);
 		};
 	}, [user, favourites]);
+
+	useEffect(() => {
+		if (user && user.uid) {
+			loadFavourites(user.uid);
+		};
+	}, [user]);
 
 	return (
 		<FavouritesContext.Provider value={{ favourites, addFavourite, removeFavourite }}>
