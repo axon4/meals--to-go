@@ -1,7 +1,8 @@
 import React from 'react';
 import { createStackNavigator, CardStyleInterpolators } from '@react-navigation/stack';
-import SettingsScreen from '../../../features/settings/screens/SettingsScreen';
-import FavouritesScreen from '../../../features/settings/screens/FavouritesScreen';
+import SettingsScreen from '../../../features/settings/screens/SettingsScreen.jsx';
+import FavouritesScreen from '../../../features/settings/screens/FavouritesScreen.jsx';
+import CameraScreen from '../../../features/settings/screens/CameraScreen.jsx';
 
 const SettingsStack = createStackNavigator();
 
@@ -21,6 +22,10 @@ const SettingsNavigator = ({ navigation, route }) => {
 			<SettingsStack.Screen
 				name='Favourites'
 				component={FavouritesScreen}
+			/>
+			<SettingsStack.Screen
+				name='Camera'
+				component={CameraScreen}
 			/>
 		</SettingsStack.Navigator>
 	);
