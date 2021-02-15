@@ -1,7 +1,9 @@
 const functions = require('firebase-functions');
-const { Client } = require('@googlemaps/google-maps-services-js');
+const { Client: GoogleClient } = require('@googlemaps/google-maps-services-js');
+const stripeClient = require('stripe')(functions.config().stripe.key);
 const { getGeocode } = require('./geocode/geocode.js');
 const { getPlacesNearby } = require('./placesNearby/placesNearby.js');
+const { getPay } = require('./pay/pay.js');
 
 // // Create and Deploy Your First Cloud Functions
 // // https://firebase.google.com/docs/functions/write-firebase-functions
@@ -11,12 +13,16 @@ const { getPlacesNearby } = require('./placesNearby/placesNearby.js');
 // 	response.send('Hello from Firebase!');
 // });
 
-const client = new Client({});
+const googleClient = new GoogleClient({});
 
 exports.geocode = functions.https.onRequest((request, response) => {
-	getGeocode(request, response, client);
+	getGeocode(request, response, googleClient);
 });
 
 exports.placesNearby = functions.https.onRequest((request, response) => {
-	getPlacesNearby(request, response, client);
+	getPlacesNearby(request, response, googleClient);
+});
+
+exports.pay = functions.https.onRequest((request, response) => {
+	getPay(request, response, stripeClient);
 });

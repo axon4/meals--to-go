@@ -16,7 +16,7 @@ const addGooglePhoto = restaurant => {
 	return restaurant;
 };
 
-module.exports.getPlacesNearby = (request, response, client) => {
+module.exports.getPlacesNearby = (request, response, googleClient) => {
 	const { location, mock } = url.parse(request.url, true).query;
 
 	if (mock === 'true') {
@@ -29,7 +29,7 @@ module.exports.getPlacesNearby = (request, response, client) => {
 		response.json(data);
 	};
 
-	client.placesNearby({
+	googleClient.placesNearby({
 		params: {
 			key: functions.config().google.key,
 			location,
