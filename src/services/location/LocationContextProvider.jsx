@@ -1,11 +1,12 @@
 import React, { useState, useEffect, createContext } from 'react';
-import { locationRequest, locationTransform } from './locationService';
+import { isMock } from '../../utils/env.js';
+import { locationRequest, locationTransform } from './locationService.js';
 
 export const LocationContext = createContext();
 
 const LocationContextProvider = ({ children }) => {
 	const [ location, setLocation ] = useState(null);
-	const [ query, setQuery ] = useState('Antwerp');
+	const [ query, setQuery ] = useState(isMock ? 'Antwerp' : 'London');
 	const [ isLoading, setIsLoading ] = useState(false);
 	const [ error, setError ] = useState(null);
 
@@ -18,15 +19,16 @@ const LocationContextProvider = ({ children }) => {
 		if (!query.length) {return};
 
 		locationRequest(query.toLowerCase())
-		.then(response => locationTransform(response))
-		.then(transformedResponse => {
-			setIsLoading(false);
-			setLocation(transformedResponse);
-		})
-		.catch(error => {
-			setIsLoading(false);
-			setError(error);
-		});
+			.then(response => locationTransform(response))
+			.then(transformedResponse => {
+				setIsLoading(false);
+				setError(null);
+				setLocation(transformedResponse);
+			})
+			.catch(error => {
+				setIsLoading(false);
+				setError(error);
+			});
 	}, [query]);
 
 	return (

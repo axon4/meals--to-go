@@ -1,5 +1,5 @@
 import React, { useState, useEffect, createContext, useContext } from 'react';
-import { LocationContext } from '../../location/LocationContextProvider.jsx';
+import { LocationContext } from '../location/LocationContextProvider.jsx';
 import { restaurantsRequest, restaurantsTransform } from './restaurantsService.js';
 
 export const RestaurantsContext = createContext();
@@ -14,18 +14,18 @@ const RestaurantsContextProvider = ({ children }) => {
 	const getRestaurants = searchLocation => {
 		setIsLoading(true);
 		setRestaurants([]);
-		setTimeout(() => {
-			restaurantsRequest(searchLocation)
-				.then(response => restaurantsTransform(response))
-				.then(transformedResponse => {
-					setIsLoading(false);
-					setRestaurants(transformedResponse);
-				})
-				.catch(error => {
-					setIsLoading(false);
-					setError(error);
-				});
-		}, 2000);
+		restaurantsRequest(searchLocation)
+			.then(response => restaurantsTransform(response))
+			.then(transformedResponse => {
+				setIsLoading(false);
+				setError(null);
+				setRestaurants(transformedResponse);
+			})
+			.catch(error => {
+				setIsLoading(false);
+				setError(error);
+				setRestaurants([]);
+			});
 	};
 
 	useEffect(() => {

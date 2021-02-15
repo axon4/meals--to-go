@@ -1,4 +1,5 @@
 const functions = require('firebase-functions');
+const { Client } = require('@googlemaps/google-maps-services-js');
 const { getGeocode } = require('./geocode/geocode.js');
 const { getPlacesNearby } = require('./placesNearby/placesNearby.js');
 
@@ -10,10 +11,12 @@ const { getPlacesNearby } = require('./placesNearby/placesNearby.js');
 // 	response.send('Hello from Firebase!');
 // });
 
+const client = new Client({});
+
 exports.geocode = functions.https.onRequest((request, response) => {
-	getGeocode(request, response);
+	getGeocode(request, response, client);
 });
 
 exports.placesNearby = functions.https.onRequest((request, response) => {
-	getPlacesNearby(request, response);
+	getPlacesNearby(request, response, client);
 });

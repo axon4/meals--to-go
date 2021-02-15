@@ -1,7 +1,7 @@
 import React from 'react';
 import FavouritesContextProvider from '../../../services/favourites/FavouritesContext.jsx';
 import LocationContextProvider from '../../../services/location/LocationContextProvider.jsx';
-import RestaurantsContextProvider from '../../../services/restaurants/mock/RestaurantsContextProvider.jsx';
+import RestaurantsContextProvider from '../../../services/restaurants/RestaurantsContextProvider.jsx';
 import { AuthenticationContext } from '../../../services/authentication/AuthenticationContext.jsx';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import RestaurantsNavigator from './RestaurantsNavigator.jsx';
