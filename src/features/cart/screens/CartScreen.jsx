@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { ScrollView } from 'react-native';
-import { List } from 'react-native-paper';
+import { List, Divider } from 'react-native-paper';
 import styled from 'styled-components/native';
 import { CartContext } from '../../../services/cart/CartContext.jsx';
 import SafeArea from '../../../components/SafeArea.jsx';
@@ -59,6 +59,7 @@ const CartScreen = ({ navigation }) => {
 					})}
 				</List.Section>
 				<Heading>Total: £{total / 100}</Heading>
+				<Divider />
 				<NameInput label='Name' value={name} onChangeText={input => setName(input)} />
 				{name ? (
 					<DebitCardInput

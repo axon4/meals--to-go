@@ -1,32 +1,33 @@
 {
-	"expo": {
-		"name": "Meals To Go",
-		"slug": "meals-to-go",
-		"version": "0.0.1",
-		"orientation": "portrait",
-		"icon": "./src/assets/icon.png",
-		"splash": {
-			"image": "./src/assets/splash.png",
-			"resizeMode": "contain",
-			"backgroundColor": "#FFFFFF"
-		},
-		"updates": {
-			"fallbackToCacheTimeout": 0
-		},
-		"assetBundlePatterns": [
-			"**/*"
-		],
-		"ios": {
-			"supportsTablet": true
-		},
-		"android": {
-			"adaptiveIcon": {
-				"foregroundImage": "./src/assets/icon.png",
-				"backgroundColor": "#FFFFFF"
-			}
-		},
-		"web": {
-			"favicon": "./src/assets/favicon.png"
-		}
-	}
+  "expo": {
+    "name": "Meals To Go",
+    "slug": "meals-to-go",
+    "version": "0.0.1",
+    "orientation": "portrait",
+    "icon": "./src/assets/icon.png",
+    "splash": {
+      "image": "./src/assets/splash.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#FFFFFF"
+    },
+    "updates": {
+      "fallbackToCacheTimeout": 0
+    },
+    "assetBundlePatterns": [
+      "**/*"
+    ],
+    "ios": {
+      "supportsTablet": true
+    },
+    "android": {
+      "adaptiveIcon": {
+        "foregroundImage": "./src/assets/icon.png",
+        "backgroundColor": "#FFFFFF"
+      },
+      "package": "com.axon4.mealstogo"
+    },
+    "web": {
+      "favicon": "./src/assets/favicon.png"
+    }
+  }
 }

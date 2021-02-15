@@ -1,6 +1,7 @@
 import React from 'react';
 import { TouchableOpacity, ScrollView } from 'react-native';
 import styled from 'styled-components/native';
+import { Card } from 'react-native-paper';
 import Text from './Text.jsx';
 import SmallRestaurantDetails from '../components/SmallRestaurantDetails.jsx';
 
@@ -10,7 +11,7 @@ const FavouritesBar = ({ favourites, onNavigate }) => {
 	};
 
 	return (
-		<FavouritesContainer>
+		<FavouritesContainer elevation={3}>
 			<Text variant='caption'>Favourites</Text>
 			<ScrollView horizontal showsHorizontalScrollIndicator={false}>
 				{favourites.map(restaurant => {
@@ -28,8 +29,10 @@ const FavouritesBar = ({ favourites, onNavigate }) => {
 	);
 };
 
-const FavouritesContainer = styled.View`
-	padding: 10px
+const FavouritesContainer = styled(Card)`
+	z-index: 777;
+	padding: 10px;
+	border-radius: 5px
 `;
 
 const FavouriteContainer = styled(TouchableOpacity)`

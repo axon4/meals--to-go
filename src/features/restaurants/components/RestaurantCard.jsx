@@ -22,7 +22,7 @@ const RestaurantCard = ({ restaurant = {} }) => {
 	} = restaurant;
 
 	return (
-		<CardBase elevation={5}>
+		<CardBase elevation={2}>
 			<Favourite restaurant={restaurant} />
 			<CardCover key={name} source={{uri: photos[0]}} />
 			<CardDetails>

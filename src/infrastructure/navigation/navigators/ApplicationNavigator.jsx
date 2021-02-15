@@ -10,6 +10,7 @@ import CartNavigator from './CartNavigator.jsx';
 import MapScreen from '../../../features/map/screens/MapScreen.jsx';
 import { Ionicons } from '@expo/vector-icons';
 import CartContextProvider from '../../../services/cart/CartContext.jsx';
+import { colours } from '../../theme/aspects/colours.js';
 
 const Tab = createBottomTabNavigator();
 
@@ -24,7 +25,7 @@ const createScreenOptions = ({ route }) => {
 	const iconName = TAB_ICON[route.name];
 
 	return {
-		tabBarIcon: ({ size, color }) => <Ionicons name={iconName} size={size} color={color} />;
+		tabBarIcon: ({ size, color }) => <Ionicons name={iconName} size={size} color={color} />
 	};
 };
 
@@ -37,8 +38,8 @@ const ApplicationNavigator = () => {
 						<Tab.Navigator
 							screenOptions={createScreenOptions}
 							tabBarOptions={{
-								activeTintColor: 'tomato',
-								inactiveTintColor: 'gray'
+								activeTintColor: colours.brand.primary,
+								inactiveTintColor: colours.brand.muted
 							}}
 						>
 							<Tab.Screen name='Restaurants' component={RestaurantsNavigator} />

@@ -1,7 +1,7 @@
 import React, { useState, useContext } from 'react';
 import { ScrollView } from 'react-native';
 import { CartContext } from '../../../services/cart/CartContext.jsx';
-import { List } from 'react-native-paper';
+import { List, Divider } from 'react-native-paper';
 import SafeArea from '../../../components/SafeArea.jsx';
 import OrderButton from '../components/OrderButtonStyles.jsx';
 import RestaurantCard from '../components/RestaurantCard.jsx';
@@ -26,10 +26,14 @@ const RestaurantDetailsScreen = ({ navigation, route }) => {
 					onPress={() => setBreakfastExpanded(!breakfastExpanded)}
 				>
 					<List.Item title='Shakshuka' />
+					<Divider />
 					<List.Item title='Full English' />
+					<Divider />
 					<List.Item title='Porridge and Honey' />
+					<Divider />
 					<List.Item title='Tea' />
 				</List.Accordion>
+				<Divider />
 				<List.Accordion
 					title='Lunch'
 					left={props => <List.Icon icon='hamburger' {...props} />}
@@ -37,10 +41,14 @@ const RestaurantDetailsScreen = ({ navigation, route }) => {
 					onPress={() => setLunchExpanded(!lunchExpanded)}
 				>
 					<List.Item title='Beef Burger and Chips' />
+					<Divider />
 					<List.Item title='Döner Kebab' />
+					<Divider />
 					<List.Item title='Chicken Club Sandwich' />
+					<Divider />
 					<List.Item title='Sun Exotic' />
 				</List.Accordion>
+				<Divider />
 				<List.Accordion
 					title='Dinner'
 					left={props => <List.Icon icon='food-variant' {...props} />}
@@ -48,10 +56,14 @@ const RestaurantDetailsScreen = ({ navigation, route }) => {
 					onPress={() => setDinnerExpanded(!dinnerExpanded)}
 				>
 					<List.Item title='Lamb Biryani' />
+					<Divider />
 					<List.Item title='Pepperoni Pizza' />
+					<Divider />
 					<List.Item title='Salmon Spaghetti' />
+					<Divider />
 					<List.Item title='Grape Juice' />
 				</List.Accordion>
+				<Divider />
 				<List.Accordion
 					title='Extras'
 					left={props => <List.Icon icon='cup' {...props} />}
@@ -59,10 +71,14 @@ const RestaurantDetailsScreen = ({ navigation, route }) => {
 					onPress={() => setExtrasExpanded(!extrasExpanded)}
 				>
 					<List.Item title='Ketchup' />
+					<Divider />
 					<List.Item title='Cheesecake' />
+					<Divider />
 					<List.Item title='Canned Drink' />
+					<Divider />
 					<List.Item title='Water' />
 				</List.Accordion>
+				<Divider />
 				<OrderButton
 					icon='cash'
 					mode='contained'

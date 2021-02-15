@@ -1,5 +1,5 @@
 import React, { useState, useContext } from 'react';
-import { TouchableOpacity } from 'react-native';
+import { ScrollView, TouchableOpacity } from 'react-native';
 import { useFocusEffect } from '@react-navigation/native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import styled from 'styled-components/native';
@@ -7,6 +7,7 @@ import { List, Avatar } from 'react-native-paper';
 import SafeArea from '../../../components/SafeArea.jsx';
 import { AuthenticationContext } from '../../../services/authentication/AuthenticationContext';
 import Text from '../../../components/Text.jsx';
+import { colours } from '../../../infrastructure/theme/aspects/colours.js';
 
 const SettingsScreen = ({ navigation }) => {
 	const [ photo, setPhoto ] = useState(null);
@@ -28,30 +29,56 @@ const SettingsScreen = ({ navigation }) => {
 			<AvatarContainer>
 				<TouchableOpacity onPress={() => navigation.navigate('Camera')}>
 					{!photo ? (
-						<Avatar.Icon size={180} icon='camera' backgroundColor='#2182BD' />
+						<Avatar.Icon size={180} icon='camera' backgroundColor={colours.brand.secondary} />
 					) : (
-						<Avatar.Image size={180} source={{uri: photo}} backgroundColor='#2182BD' />
+						<Avatar.Image size={180} source={{uri: photo}} />
 					)}
 				</TouchableOpacity>
 				<Text variant='label'>{user.email}</Text>
 			</AvatarContainer>
-			<List.Section>
-				<SettingsItem
-					title='Favourites'
-					description='View your Saved Favourites'
-					left={props => <List.Icon icon='heart' color='black' {...props} />}
-					onPress={() => navigation.navigate('Favourites')}
-				/>
-				<SettingsItem
-					title='Log Out'
-					description='Securely Log Out'
-					left={props => <List.Icon icon='door' color='black' {...props} />}
-					onPress={onLogOut}
-				/>
-			</List.Section>
+			<ScrollView>
+				<List.Section>
+					<SettingsItem
+						title='Favourites'
+						description='View your Saved Favourites'
+						left={props => <List.Icon icon='heart' color={colours.UI.secondary} {...props} />}
+						onPress={() => navigation.navigate('Favourites')}
+					/>
+					<SettingsItem
+						title='Orders'
+						description='Examine your Order History'
+						left={props => <List.Icon icon='history' color={colours.UI.secondary} {...props} />}
+						onPress={() => null}
+					/>
+					<SettingsItem
+						title='Payment'
+						description='Manage your Payments'
+						left={props => <List.Icon icon='cash-multiple' color={colours.UI.secondary} {...props} />}
+						onPress={() => null}
+					/>
+					<SettingsItem
+						title='Log Out'
+						description='Securely Log Out'
+						left={props => <List.Icon icon='door' color={colours.UI.secondary} {...props} />}
+						onPress={onLogOut}
+					/>
+				</List.Section>
+			</ScrollView>
 		</SafeArea>
 	);
 };
+
+const SettingsBackground = styled.ImageBackground.attrs({
+	source: require('../../../assets/background.png')
+})`
+	position: absolute;
+	width: 100%;
+	height: 100%
+`;
+
+const TransparentSafeArea = styled(SafeArea)`
+	background-color: transparent
+`;
 
 const AvatarContainer = styled.View`
 	align-items: center;
@@ -59,7 +86,9 @@ const AvatarContainer = styled.View`
 `;
 
 const SettingsItem = styled(List.Item)`
-	padding: ${props => props.theme.spacing[3]}
+	margin: ${props => props.theme.spacing[1]};
+	padding: ${props => props.theme.spacing[3]};
+	background-color: rgba(255, 255, 255, 0.4)
 `;
 
 export default SettingsScreen;

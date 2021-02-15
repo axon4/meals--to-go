@@ -4,7 +4,7 @@ import { colours } from '../../../infrastructure/theme/aspects/colours.js';
 import Text from '../../../components/Text.jsx';
 
 export const AuthenticationBackground = styled.ImageBackground.attrs({
-	source: require('../../../assets/authenticationBackground.png')
+	source: require('../../../assets/background.png')
 })`
 	flex: 1;
 	justify-content: center;
