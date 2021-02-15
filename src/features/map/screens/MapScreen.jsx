@@ -1,12 +1,29 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { LocationContext } from '../../../services/location/LocationContextProvider.jsx';
-import { RestaurantsContext } from '../../../services/restaurants/mock/RestaurantsContextProvider.jsx';
+import { RestaurantsContext } from '../../../services/restaurants/RestaurantsContextProvider.jsx';
 import styled from 'styled-components/native';
 import MapView from 'react-native-maps';
 import Search from '../components/Search.jsx';
 import MapCallout from '../components/MapCallout.jsx';
 
 const MapScreen = ({ navigation }) => {
+	const { location } = useContext(LocationContext);
+
+	if (!location) {
+		return (
+			<Map
+				region={{
+					latitude: 0,
+					longitude: 0
+				}}
+			/>
+		);
+	};
+
+	return <RestaurantMap navigation={navigation} />;
+};
+
+const RestaurantMap = ({ navigation }) => {
 	const { location } = useContext(LocationContext);
 	const { restaurants = [] } = useContext(RestaurantsContext);
 

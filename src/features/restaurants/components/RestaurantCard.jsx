@@ -26,7 +26,7 @@ const RestaurantCard = ({ restaurant = {} }) => {
 			<Favourite restaurant={restaurant} />
 			<CardCover key={name} source={{uri: photos[0]}} />
 			<CardDetails>
-				<Text type='label'>{name}</Text>
+				<Text variant='label'>{name}</Text>
 				<IconsContainer>
 					<Rating>
 						{[...Array(Math.floor(rating))].map((empty, i) => (
@@ -39,7 +39,7 @@ const RestaurantCard = ({ restaurant = {} }) => {
 						))}
 					</Rating>
 					{isClosedTemporarily ? (
-						<Text type='error'>CLOSED TEMPORARILY</Text>
+						<Text variant='error'>CLOSED TEMPORARILY</Text>
 					) : null}
 					{isOpen ? <Open xml={open} width={20} height={20} /> : null}
 					<Icon source={{uri: icon}} />

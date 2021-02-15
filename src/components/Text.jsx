@@ -2,11 +2,11 @@ import styled from 'styled-components/native';
 
 const Text = styled.Text`
 	${({ theme }) => defaultTextStyles(theme)};
-	${({ type, theme }) => types[type](theme)}
+	${({ variant, theme }) => variants[variant](theme)}
 `;
 
 Text.defaultProps = {
-	type: 'body'
+	variant: 'body'
 };
 
 const defaultTextStyles = theme => `
@@ -41,7 +41,7 @@ const error = theme => `
 	color: ${theme.colours.text.error}
 `;
 
-const types = {
+const variants = {
 	body,
 	label,
 	caption,
