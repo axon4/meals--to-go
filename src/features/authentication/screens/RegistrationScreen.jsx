@@ -1,44 +1,44 @@
 import React, { useState, useContext } from 'react';
-import { AuthenticationContext } from '../../../services/authentication/AuthenticationContext.jsx';
 import { ActivityIndicator, Colors } from 'react-native-paper';
-import { AuthenticationBackground, AuthenticationCover, SectionTitle, AuthenticationContainer, AuthenticationInput, ErrorContainer, AuthenticationButton } from '../components/AuthenticationStyles.jsx';
+import { AuthenticationBackGround, AuthenticationCover, SectionTitle, AuthenticationContainer, AuthenticationInPut, ErrorContainer, AuthenticationButton } from '../components/AuthenticationStyles.jsx';
 import Text from '../../../components/Text.jsx';
+import { AuthenticationConText } from '../../../services/authentication/AuthenticationConText.jsx';
 
 const RegistrationScreen = ({ navigation }) => {
-	const [ email, setEmail ] = useState('');
-	const [ password, setPassword ] = useState('');
-	const [ repeatedPassword, setRepeatedPassword ] = useState('');
+	const [ eMail, setEMail ] = useState('');
+	const [ passWord, setPassWord ] = useState('');
+	const [ repeatedPassWord, setRepeatedPassWord ] = useState('');
 
-	const { onRegistration, isLoading, error } = useContext(AuthenticationContext);
+	const { onRegistration, isLoading, error } = useContext(AuthenticationConText);
 
 	return (
-		<AuthenticationBackground>
+		<AuthenticationBackGround>
 			<AuthenticationCover />
 			<SectionTitle>Register</SectionTitle>
 			<AuthenticationContainer>
-				<AuthenticationInput
-					label='Email'
-					value={email}
+				<AuthenticationInPut
+					label='EMail'
+					value={eMail}
 					textContentType='emailAddress'
 					keyboardType='email-address'
 					autocapitalize='none'
-					onChangeText={userEmail => setEmail(userEmail)}
+					onChangeText={userEMail => {setEMail(userEMail)}}
 				/>
-				<AuthenticationInput
-					label='Password'
-					value={password}
+				<AuthenticationInPut
+					label='PassWord'
+					value={passWord}
 					textContentType='password'
 					secureTextEntry
 					autocapitalize='none'
-					onChangeText={userPassword => setPassword(userPassword)}
+					onChangeText={userPassWord => {setPassWord(userPassWord)}}
 				/>
-				<AuthenticationInput
-					label='Repeat Password'
-					value={repeatedPassword}
+				<AuthenticationInPut
+					label='Repeat PassWord'
+					value={repeatedPassWord}
 					textContentType='password'
 					secureTextEntry
 					autocapitalize='none'
-					onChangeText={userRepeatedPassword => setRepeatedPassword(userRepeatedPassword)}
+					onChangeText={userRepeatedPassWord => {setRepeatedPassWord(userRepeatedPassWord)}}
 				/>
 				{error ? (
 					<ErrorContainer>
@@ -49,7 +49,7 @@ const RegistrationScreen = ({ navigation }) => {
 					<AuthenticationButton
 						icon='email'
 						mode='contained'
-						onPress={() => onRegistration(email, password, repeatedPassword)}
+						onPress={() => {onRegistration(eMail, passWord, repeatedPassWord)}}
 					>
 						Register
 					</AuthenticationButton>
@@ -62,11 +62,11 @@ const RegistrationScreen = ({ navigation }) => {
 			</AuthenticationContainer>
 			<AuthenticationButton
 				mode='contained'
-				onPress={() => navigation.goBack()}
+				onPress={() => {navigation.goBack()}}
 			>
 				Back
 			</AuthenticationButton>
-		</AuthenticationBackground>
+		</AuthenticationBackGround>
 	);
 };
 

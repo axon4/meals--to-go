@@ -10,7 +10,7 @@ const CartFailureScreen = ({ route, theme }) => {
 		<SafeArea>
 			<CartIconContainer>
 				<CartIcon icon='close' background={theme.colours.UI.error} />
-				<Text variant='label'>Failure!</Text>
+				<Text variant='label'>Failure</Text>
 				<Text variant='label'>{error}</Text>
 			</CartIconContainer>
 		</SafeArea>

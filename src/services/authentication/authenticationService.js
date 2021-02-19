@@ -1,9 +1,9 @@
-import firebase from '../../lib/firebase/firebase.js';
+import fireBase from '../../lib/fireBase/fireBase.js';
 
-export const logIn = (email, password) => firebase.auth().signInWithEmailAndPassword(email, password);
+export const logIn = (eMail, passWord) => fireBase.auth().signInWithEmailAndPassword(eMail, passWord);
 
-export const register = (email, password) => firebase.auth().createUserWithEmailAndPassword(email, password);
+export const register = (eMail, passWord) => fireBase.auth().createUserWithEmailAndPassword(eMail, passWord);
 
-export const persistUser = user => firebase.auth().onAuthStateChanged(user);
+export const persistUser = user => fireBase.auth().onAuthStateChanged(user);
 
-export const logOut = () => firebase.auth().signOut();
+export const logOut = () => fireBase.auth().signOut();

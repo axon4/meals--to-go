@@ -1,7 +1,7 @@
 import React from 'react';
 import { createStackNavigator, TransitionPresets } from '@react-navigation/stack';
 import RestaurantsScreen from '../../../features/restaurants/screens/RestaurantsScreen.jsx';
-import RestaurantDetailsScreen from '../../../features/restaurants/screens/RestaurantDetailsScreen.jsx';
+import RestaurantDeTailsScreen from '../../../features/restaurants/screens/RestaurantDeTailsScreen.jsx';
 
 const RestaurantsStack = createStackNavigator();
 
@@ -18,8 +18,8 @@ const RestaurantsNavigator = () => {
 				component={RestaurantsScreen}
 			/>
 			<RestaurantsStack.Screen
-				name='RestaurantDetails'
-				component={RestaurantDetailsScreen}
+				name='RestaurantDeTails'
+				component={RestaurantDeTailsScreen}
 			/>
 		</RestaurantsStack.Navigator>
 	);

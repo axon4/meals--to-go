@@ -1,10 +1,10 @@
 import React from 'react';
 import { Platform } from 'react-native';
-import styled from 'styled-components/native';
 import WebView from 'react-native-webview';
-import Text from '../../src/components/Text.jsx';
+import styled from 'styled-components/native';
+import Text from './Text.jsx';
 
-const SmallRestaurantDetails = ({ restaurant, isMap }) => {
+const SmallRestaurantDeTails = ({ restaurant, isMap }) => {
 	const Image = Platform.OS === 'android' && isMap ? RestaurantWebView : RestaurantImage;
 
 	return (
@@ -14,25 +14,25 @@ const SmallRestaurantDetails = ({ restaurant, isMap }) => {
 				{restaurant.name}
 			</Text>
 		</Item>
-	)
+	);
 };
 
 const Item = styled.View`
 	align-items: center;
 	max-width: 120px;
-	padding: 10px
+	padding: 10px;
 `;
 
 const RestaurantImage = styled.Image`
 	width: 120px;
 	height: 100px;
-	border-radius: 10px
+	border-radius: 10px;
 `;
 
 const RestaurantWebView = styled(WebView)`
 	width: 120px;
 	height: 100px;
-	border-radius: 10px
+	border-radius: 10px;
 `;
 
-export default SmallRestaurantDetails;
+export default SmallRestaurantDeTails;

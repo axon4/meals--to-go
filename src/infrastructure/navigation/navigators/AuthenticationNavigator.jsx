@@ -10,7 +10,7 @@ const AuthenticationNavigator = () => {
 	return (
 		<AuthenticationStack.Navigator headerMode='none'>
 			<AuthenticationStack.Screen name='Authentication' component={AuthenticationScreen} />
-			<AuthenticationStack.Screen name='LogIn' component={LogInScreen} />
+			<AuthenticationStack.Screen name='Log-In' component={LogInScreen} />
 			<AuthenticationStack.Screen name='Registration' component={RegistrationScreen} />
 		</AuthenticationStack.Navigator>
 	);

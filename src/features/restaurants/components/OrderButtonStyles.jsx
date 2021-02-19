@@ -8,7 +8,7 @@ const OrderButton = styled(Button).attrs({
 	align-self: center;
 	width: 83%;
 	margin: ${props => props.theme.spacing[3]};
-	padding: ${props => props.theme.spacing[2]}
+	padding: ${props => props.theme.spacing[2]};
 `;
 
 export default OrderButton;

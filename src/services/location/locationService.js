@@ -1,17 +1,17 @@
-import camelize from 'camelize';
-import { host, isMock } from '../../utils/env.js';
+import camelise from 'camelize';
+import { host, isMock } from '../../utilities/environment.js';
 
-export const locationRequest = searchQuery => {
+export const locationReQuest = searchQuery => {
 	return fetch(`${host}/geocode?city=${searchQuery}&mock=${isMock}`)
 		.then(response => response.json())
-		.catch(error => console.log(error));
+		.catch(error => {console.error(error)});
 };
 
-export const locationTransform = location => {
-	const formattedLocation = camelize(location);
-	const { geometry = {} } = formattedLocation.results[0];
+export const locationTransForm = location => {
+	const forMattedLocation = camelise(location);
+	const { geometry = {} } = forMattedLocation.results[0];
 	const { lat, lng } = geometry.location;
 	const { viewport } = geometry;
-	
+
 	return { lat, lng, viewport };
 };

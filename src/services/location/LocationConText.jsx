@@ -1,10 +1,10 @@
 import React, { useState, useEffect, createContext } from 'react';
-import { isMock } from '../../utils/env.js';
-import { locationRequest, locationTransform } from './locationService.js';
+import { locationReQuest, locationTransForm } from './locationService.js';
+import { isMock } from '../../utilities/environment.js';
 
-export const LocationContext = createContext();
+export const LocationConText = createContext();
 
-const LocationContextProvider = ({ children }) => {
+const LocationConTextProvider = ({ children }) => {
 	const [ location, setLocation ] = useState(null);
 	const [ query, setQuery ] = useState(isMock ? 'Antwerp' : 'London');
 	const [ isLoading, setIsLoading ] = useState(false);
@@ -16,10 +16,10 @@ const LocationContextProvider = ({ children }) => {
 	};
 
 	useEffect(() => {
-		if (!query.length) {return};
+		if (!query.length) return;
 
-		locationRequest(query.toLowerCase())
-			.then(response => locationTransform(response))
+		locationReQuest(query.toLowerCase())
+			.then(response => locationTransForm(response))
 			.then(transformedResponse => {
 				setIsLoading(false);
 				setError(null);
@@ -32,18 +32,18 @@ const LocationContextProvider = ({ children }) => {
 	}, [query]);
 
 	return (
-		<LocationContext.Provider
+		<LocationConText.Provider
 			value={{
 				location,
 				query,
 				search: onSearch,
 				isLoading,
 				error
-			}}	
+			}}
 		>
 			{children}
-		</LocationContext.Provider>
+		</LocationConText.Provider>
 	);
 };
 
-export default LocationContextProvider;
+export default LocationConTextProvider;

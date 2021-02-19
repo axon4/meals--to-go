@@ -12,8 +12,7 @@ web-build/
 # macOS
 .DS_Store
 
-# Firebase
-
+# FireBase
 */node_modules/**/*
 firebase-debug.log
 ui-debug.log

@@ -1,19 +1,19 @@
 import React, { useState, useEffect, createContext, useContext } from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { AuthenticationContext } from '../authentication/AuthenticationContext.jsx';
+import { AuthenticationConText } from '../authentication/AuthenticationConText.jsx';
 
-export const FavouritesContext = createContext();
+export const FavouritesConText = createContext();
 
-const FavouritesContextProvider = ({ children }) => {
-	const { user } = useContext(AuthenticationContext);
+const FavouritesConTextProvider = ({ children }) => {
+	const { user } = useContext(AuthenticationConText);
 
 	const [ favourites, setFavourites ] = useState([]);
 
-	const addFavourite = restaurant => setFavourites([...favourites, restaurant]);
+	const addFavourite = restaurant => {setFavourites([...favourites, restaurant])};
 
-	const removeFavourite = restaurant => {
-		const newFavourites = favourites.filter(restaurantToRemove => {
-			return restaurantToRemove.placeId !== restaurant.placeId;
+	const reMoveFavourite = restaurant => {
+		const newFavourites = favourites.filter(restaurantToReMove => {
+			return restaurantToReMove.placeId !== restaurant.placeId;
 		});
 
 		setFavourites(newFavourites);
@@ -22,9 +22,10 @@ const FavouritesContextProvider = ({ children }) => {
 	const saveFavourites = async (uid, favourite) => {
 		try {
 			const favouriteToSave = JSON.stringify(favourite);
+
 			await AsyncStorage.setItem(`@favourites-${uid}`, favouriteToSave);
 		} catch (error) {
-			console.log(error);
+			console.error(error);
 		};
 	};
 
@@ -36,7 +37,7 @@ const FavouritesContextProvider = ({ children }) => {
 				setFavourites(JSON.parse(favouritesToLoad));
 			};
 		} catch (error) {
-			console.log(error);
+			console.error(error);
 		};
 	};
 
@@ -53,10 +54,10 @@ const FavouritesContextProvider = ({ children }) => {
 	}, [user]);
 
 	return (
-		<FavouritesContext.Provider value={{ favourites, addFavourite, removeFavourite }}>
+		<FavouritesConText.Provider value={{ favourites, addFavourite, reMoveFavourite }}>
 			{children}
-		</FavouritesContext.Provider>
+		</FavouritesConText.Provider>
 	);
 };
 
-export default FavouritesContextProvider;
+export default FavouritesConTextProvider;

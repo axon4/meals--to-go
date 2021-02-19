@@ -1,13 +1,13 @@
 import React, { useState, useEffect, useContext } from 'react';
-import { LocationContext } from '../../../services/location/LocationContextProvider.jsx';
-import { RestaurantsContext } from '../../../services/restaurants/RestaurantsContextProvider.jsx';
-import styled from 'styled-components/native';
 import MapView from 'react-native-maps';
+import styled from 'styled-components/native';
 import Search from '../components/Search.jsx';
-import MapCallout from '../components/MapCallout.jsx';
+import MapCallOut from '../components/MapCallOut.jsx';
+import { LocationConText } from '../../../services/location/LocationConText.jsx';
+import { RestaurantsContext } from '../../../services/restaurants/RestaurantsContextProvider.jsx';
 
 const MapScreen = ({ navigation }) => {
-	const { location } = useContext(LocationContext);
+	const { location } = useContext(LocationConText);
 
 	if (!location) {
 		return (
@@ -20,11 +20,11 @@ const MapScreen = ({ navigation }) => {
 		);
 	};
 
-	return <RestaurantMap navigation={navigation} />;
+	return <RestaurantMap navigation={navigation} />
 };
 
 const RestaurantMap = ({ navigation }) => {
-	const { location } = useContext(LocationContext);
+	const { location } = useContext(LocationConText);
 	const { restaurants = [] } = useContext(RestaurantsContext);
 
 	const [ latitudeDelta, setLatitudeDelta ] = useState(0);
@@ -59,8 +59,8 @@ const RestaurantMap = ({ navigation }) => {
 								longitude: restaurant.geometry.location.lng
 							}}
 						>
-							<MapView.Callout onPress={() => navigation.navigate('RestaurantDetails', { restaurant })}>
-								<MapCallout restaurant={restaurant} />
+							<MapView.Callout onPress={() => {navigation.navigate('RestaurantDetails', { restaurant })}}>
+								<MapCallOut restaurant={restaurant} />
 							</MapView.Callout>
 						</MapView.Marker>
 					);
@@ -72,7 +72,7 @@ const RestaurantMap = ({ navigation }) => {
 
 const Map = styled(MapView)`
 	width: 100%;
-	height: 100%
+	height: 100%;
 `;
 
 export default MapScreen;

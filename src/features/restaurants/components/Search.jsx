@@ -1,10 +1,10 @@
 import React, { useState, useEffect, useContext } from 'react';
-import { LocationContext } from '../../../services/location/LocationContextProvider.jsx';
-import styled from 'styled-components/native';
 import { Searchbar } from 'react-native-paper';
+import styled from 'styled-components/native';
+import { LocationConText } from '../../../services/location/LocationConText.jsx';
 
 const Search = ({ isFavouritesExpanded, onFavouritesExpand }) => {
-	const { query, search } = useContext(LocationContext);
+	const { query, search } = useContext(LocationConText);
 	const [ searchQuery, setSearchQuery ] = useState(query);
 
 	useEffect(() => {
@@ -18,8 +18,8 @@ const Search = ({ isFavouritesExpanded, onFavouritesExpand }) => {
 				onIconPress={onFavouritesExpand}
 				value={searchQuery}
 				placeholder='Search Locations...'
-				onChangeText={text => setSearchQuery(text)}
-				onSubmitEditing={() => search(searchQuery)}
+				onChangeText={text => {setSearchQuery(text)}}
+				onSubmitEditing={() => {search(searchQuery)}}
 			/>
 		</SearchContainer>
 	);
@@ -27,7 +27,7 @@ const Search = ({ isFavouritesExpanded, onFavouritesExpand }) => {
 
 const SearchContainer = styled.View`
 	margin: ${props => props.theme.spacing[3]};
-	background-color: ${props => props.theme.colours.background.primary}
+	background-color: ${props => props.theme.colours.background.primary};
 `;
 
 export default Search;

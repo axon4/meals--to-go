@@ -1,33 +1,34 @@
 import React, { useState, useContext } from 'react';
 import { ScrollView } from 'react-native';
-import { CartContext } from '../../../services/cart/CartContext.jsx';
 import { List, Divider } from 'react-native-paper';
 import SafeArea from '../../../components/SafeArea.jsx';
-import OrderButton from '../components/OrderButtonStyles.jsx';
 import RestaurantCard from '../components/RestaurantCard.jsx';
+import OrderButton from '../components/OrderButtonStyles.jsx';
+import { CartConText } from '../../../services/cart/CartConText.jsx';
 
-const RestaurantDetailsScreen = ({ navigation, route }) => {
-	const [ breakfastExpanded, setBreakfastExpanded ] = useState(false);
+const RestaurantDeTailsScreen = ({ navigation, route }) => {
+	const [ breakFastExpanded, setBreakFastExpanded ] = useState(false);
 	const [ lunchExpanded, setLunchExpanded ] = useState(false);
 	const [ dinnerExpanded, setDinnerExpanded ] = useState(false);
 	const [ extrasExpanded, setExtrasExpanded ] = useState(false);
 
 	const { restaurant } = route.params;
-	const { addToCart } = useContext(CartContext);
+
+	const { addToCart } = useContext(CartConText);
 
 	return (
 		<SafeArea>
 			<RestaurantCard restaurant={restaurant} />
 			<ScrollView>
 				<List.Accordion
-					title='Breakfast'
+					title='BreakFast'
 					left={props => <List.Icon icon='bread-slice' {...props} />}
-					expanded={breakfastExpanded}
-					onPress={() => setBreakfastExpanded(!breakfastExpanded)}
+					expanded={breakFastExpanded}
+					onPress={() => {setBreakFastExpanded(!breakFastExpanded)}}
 				>
-					<List.Item title='Shakshuka' />
+					<List.Item title='ShakShuka' />
 					<Divider />
-					<List.Item title='Full English' />
+					<List.Item title='Full-English' />
 					<Divider />
 					<List.Item title='Porridge and Honey' />
 					<Divider />
@@ -38,22 +39,22 @@ const RestaurantDetailsScreen = ({ navigation, route }) => {
 					title='Lunch'
 					left={props => <List.Icon icon='hamburger' {...props} />}
 					expanded={lunchExpanded}
-					onPress={() => setLunchExpanded(!lunchExpanded)}
+					onPress={() => {setLunchExpanded(!lunchExpanded)}}
 				>
-					<List.Item title='Beef Burger and Chips' />
+					<List.Item title='Beef-Burger and Chips' />
 					<Divider />
-					<List.Item title='Döner Kebab' />
+					<List.Item title='Döner-Kebab' />
 					<Divider />
-					<List.Item title='Chicken Club Sandwich' />
+					<List.Item title='Chicken Club-Sandwich' />
 					<Divider />
-					<List.Item title='Sun Exotic' />
+					<List.Item title='StrawBerry MilkShake' />
 				</List.Accordion>
 				<Divider />
 				<List.Accordion
 					title='Dinner'
 					left={props => <List.Icon icon='food-variant' {...props} />}
 					expanded={dinnerExpanded}
-					onPress={() => setDinnerExpanded(!dinnerExpanded)}
+					onPress={() => {setDinnerExpanded(!dinnerExpanded)}}
 				>
 					<List.Item title='Lamb Biryani' />
 					<Divider />
@@ -61,20 +62,20 @@ const RestaurantDetailsScreen = ({ navigation, route }) => {
 					<Divider />
 					<List.Item title='Salmon Spaghetti' />
 					<Divider />
-					<List.Item title='Grape Juice' />
+					<List.Item title='Grape-Juice' />
 				</List.Accordion>
 				<Divider />
 				<List.Accordion
 					title='Extras'
 					left={props => <List.Icon icon='cup' {...props} />}
 					expanded={extrasExpanded}
-					onPress={() => setExtrasExpanded(!extrasExpanded)}
+					onPress={() => {setExtrasExpanded(!extrasExpanded)}}
 				>
 					<List.Item title='Ketchup' />
 					<Divider />
-					<List.Item title='Cheesecake' />
+					<List.Item title='CheeseCake' />
 					<Divider />
-					<List.Item title='Canned Drink' />
+					<List.Item title='Olives' />
 					<Divider />
 					<List.Item title='Water' />
 				</List.Accordion>
@@ -94,4 +95,4 @@ const RestaurantDetailsScreen = ({ navigation, route }) => {
 	);
 };
 
-export default RestaurantDetailsScreen;
+export default RestaurantDeTailsScreen;

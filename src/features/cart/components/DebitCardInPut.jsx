@@ -1,12 +1,12 @@
 import React from 'react';
 import createStripe from 'stripe-client';
 import { LiteCreditCardInput } from 'react-native-credit-card-input';
-import { tokenRequest } from '../../../services/cart/cartService.js';
+import { tokenReQuest } from '../../../services/cart/cartService.js';
 
-const DebitCardInput = ({ name, onSuccess, onFailure }) => {
+const DebitCardInPut = ({ name, onSuccess, onFailure }) => {
 	const onChange = async formData => {
 		const { status, values } = formData;
-		const isIncomplete = Object.values(status).includes('incomplete');
+		const isInComplete = Object.values(status).includes('incomplete');
 		const card = {
 			name,
 			number: values.number,
@@ -15,13 +15,13 @@ const DebitCardInput = ({ name, onSuccess, onFailure }) => {
 			cvc: values.cvc
 		};
 
-		if (!isIncomplete) {
+		if (!isInComplete) {
 			try {
-				const token = await tokenRequest(card);
+				const token = await tokenReQuest(card);
 
 				onSuccess(token);
 			} catch (error) {
-				console.log(error);
+				console.error(error);
 				onFailure();
 			};
 		};
@@ -30,4 +30,4 @@ const DebitCardInput = ({ name, onSuccess, onFailure }) => {
 	return <LiteCreditCardInput onChange={onChange} />;
 };
 
-export default DebitCardInput;
+export default DebitCardInPut;

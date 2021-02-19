@@ -8,7 +8,7 @@ const CartSuccessScreen = () => {
 		<SafeArea>
 			<CartIconContainer>
 				<CartIcon icon='check-bold' />
-				<Text variant='label'>Success!</Text>
+				<Text variant='label'>Success</Text>
 			</CartIconContainer>
 		</SafeArea>
 	);

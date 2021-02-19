@@ -1,4 +1,4 @@
-const url = require('url');
+const NodeURL = require('url');
 const functions = require('firebase-functions');
 const { mockCities, addMockPhoto } = require('./mock/cities.js');
 
@@ -16,8 +16,8 @@ const addGooglePhoto = restaurant => {
 	return restaurant;
 };
 
-module.exports.getPlacesNearby = (request, response, googleClient) => {
-	const { location, mock } = url.parse(request.url, true).query;
+module.exports.getPlacesNearBy = (request, response, GoogleClient) => {
+	const { location, mock } = NodeURL.parse(request.url, true).query;
 
 	if (mock === 'true') {
 		const data = mockCities[location];
@@ -29,7 +29,7 @@ module.exports.getPlacesNearby = (request, response, googleClient) => {
 		response.json(data);
 	};
 
-	googleClient.placesNearby({
+	GoogleClient.placesNearby({
 		params: {
 			key: functions.config().google.key,
 			location,

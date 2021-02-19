@@ -1,10 +1,7 @@
 import React, { useState, useContext } from 'react';
 import { TouchableOpacity, ActivityIndicator } from 'react-native';
-import { RestaurantsContext } from '../../../services/restaurants/RestaurantsContextProvider.jsx';
-import { LocationContext } from '../../../services/location/LocationContextProvider.jsx';
-import { FavouritesContext } from '../../../services/favourites/FavouritesContext.jsx';
-import styled from 'styled-components/native';
 import { Colors } from 'react-native-paper';
+import styled from 'styled-components/native';
 import Search from '../components/Search.jsx';
 import SafeArea from '../../../components/SafeArea.jsx';
 import FavouritesBar from '../../../components/FavouritesBar.jsx';
@@ -12,16 +9,19 @@ import Text from '../../../components/Text.jsx';
 import RestaurantsList from '../components/RestaurantListStyles.jsx';
 import FadeInView from '../../../components/FadeInView.jsx';
 import RestaurantCard from '../components/RestaurantCard.jsx';
+import { RestaurantsContext } from '../../../services/restaurants/RestaurantsContextProvider.jsx';
+import { LocationConText } from '../../../services/location/LocationConText.jsx';
+import { FavouritesConText } from '../../../services/favourites/FavouritesConText.jsx';
 
 const RestaurantsScreen = ({ navigation }) => {
 	const { restaurants, isLoading, error } = useContext(RestaurantsContext);
-	const { error: locationError } = useContext(LocationContext);
-	const { favourites } = useContext(FavouritesContext);
+	const { error: locationError } = useContext(LocationConText);
+	const { favourites } = useContext(FavouritesConText);
 
 	const [ isFavouritesExpanded, setIsFavouritesExpanded ] = useState(false);
 
 	const hasError = !!error || !!locationError;
-	
+
 	return (
 		<SafeArea>
 			{isLoading ? (
@@ -31,7 +31,7 @@ const RestaurantsScreen = ({ navigation }) => {
 			) : null}
 			<Search
 				isFavouritesExpanded={isFavouritesExpanded}
-				onFavouritesExpand={() => setIsFavouritesExpanded(!isFavouritesExpanded)}
+				onFavouritesExpand={() => {setIsFavouritesExpanded(!isFavouritesExpanded)}}
 			/>
 			{isFavouritesExpanded ? (
 				<FavouritesBar
@@ -41,20 +41,21 @@ const RestaurantsScreen = ({ navigation }) => {
 			) : null}
 			{hasError ? (
 				<ErrorText variant='error'>Error Retrieving Data</ErrorText>
-			 ) : (
+			) : (
 				<RestaurantsList
 					data={restaurants}
 					renderItem={({ item }) => {
 						return (
-							<TouchableOpacity onPress={() => navigation.navigate('RestaurantDetails', {restaurant: item})}>
+							<TouchableOpacity onPress={() => {navigation.navigate('RestaurantDetails', {restaurant: item})}}>
 								<FadeInView>
 									<RestaurantCard restaurant={item} />
 								</FadeInView>
 							</TouchableOpacity>
-					)}}
+						);
+					}}
 					keyExtractor={item => item.name}
 				/>
-			 )}
+			)}
 		</SafeArea>
 	);
 };
@@ -62,15 +63,15 @@ const RestaurantsScreen = ({ navigation }) => {
 const LoadingContainer = styled.View`
 	position: absolute;
 	top: 50%;
-	left: 50%
+	left: 50%;
 `;
 
 const Loading = styled(ActivityIndicator)`
-	margin-left: -25px
+	margin-left: -25px;
 `;
 
 const ErrorText = styled(Text)`
-	margin-left: ${props => props.theme.spacing[3]}
+	margin-left: ${props => props.theme.spacing[3]};
 `;
 
 // const styles = StyleSheet.create({

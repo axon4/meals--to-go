@@ -1,15 +1,15 @@
 import React from 'react';
-import FavouritesContextProvider from '../../../services/favourites/FavouritesContext.jsx';
-import LocationContextProvider from '../../../services/location/LocationContextProvider.jsx';
-import RestaurantsContextProvider from '../../../services/restaurants/RestaurantsContextProvider.jsx';
-import { AuthenticationContext } from '../../../services/authentication/AuthenticationContext.jsx';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import FavouritesConTextProvider from '../../../services/favourites/FavouritesConText.jsx';
+import LocationConTextProvider from '../../../services/location/LocationConText.jsx';
+import RestaurantsContextProvider from '../../../services/restaurants/RestaurantsContextProvider.jsx';
+import { AuthenticationConText } from '../../../services/authentication/AuthenticationConText.jsx';
+import CartConTextProvider from '../../../services/cart/CartConText.jsx';
 import RestaurantsNavigator from './RestaurantsNavigator.jsx';
 import SettingsNavigator from './SettingsNavigator.jsx';
 import CartNavigator from './CartNavigator.jsx';
 import MapScreen from '../../../features/map/screens/MapScreen.jsx';
 import { Ionicons } from '@expo/vector-icons';
-import CartContextProvider from '../../../services/cart/CartContext.jsx';
 import { colours } from '../../theme/aspects/colours.js';
 
 const Tab = createBottomTabNavigator();
@@ -31,10 +31,10 @@ const createScreenOptions = ({ route }) => {
 
 const ApplicationNavigator = () => {
 	return (
-		<FavouritesContextProvider>
-			<LocationContextProvider>
+		<FavouritesConTextProvider>
+			<LocationConTextProvider>
 				<RestaurantsContextProvider>
-					<CartContextProvider>
+					<CartConTextProvider>
 						<Tab.Navigator
 							screenOptions={createScreenOptions}
 							tabBarOptions={{
@@ -47,10 +47,10 @@ const ApplicationNavigator = () => {
 							<Tab.Screen name='Cart' component={CartNavigator} />
 							<Tab.Screen name='Settings' component={SettingsNavigator} />
 						</Tab.Navigator>
-					</CartContextProvider>
+					</CartConTextProvider>
 				</RestaurantsContextProvider>
-			</LocationContextProvider>
-		</FavouritesContextProvider>
+			</LocationConTextProvider>
+		</FavouritesConTextProvider>
 	);
 };
 

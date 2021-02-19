@@ -1,16 +1,17 @@
 import React, { useState, createContext } from 'react';
 import { logIn, register, persistUser, logOut } from './authenticationService.js';
 
-export const AuthenticationContext = createContext();
+export const AuthenticationConText = createContext();
 
-const AuthenticationContextProvider = ({ children }) => {
+const AuthenticationConTextProvider = ({ children }) => {
 	const [ user, setUser ] = useState(null);
 	const [ isLoading, setIsLoading ] = useState(false);
 	const [ error, setError ] = useState(null);
 
-	const onLogIn = (email, password) => {
+	const onLogIn = (eMail, passWord) => {
 		setIsLoading(true);
-		logIn(email, password)
+
+		logIn(eMail, passWord)
 			.then(loggedIn => {
 				setUser(loggedIn);
 				setIsLoading(false);
@@ -21,15 +22,16 @@ const AuthenticationContextProvider = ({ children }) => {
 			});
 	};
 
-	const onRegistration = (email, password, repeatedPassword) => {
-		if (password !== repeatedPassword) {
-			setError('Passwords Do Not Match');
+	const onRegistration = (eMail, passWord, repeatedPassWord) => {
+		if (passWord !== repeatedPassWord) {
+			setError('PassWords Do Not Match');
 
 			return;
 		};
-		
+
 		setIsLoading(true);
-		register(email, password)
+
+		register(eMail, passWord)
 			.then(registered => {
 				setUser(registered);
 				setIsLoading(false);
@@ -44,7 +46,7 @@ const AuthenticationContextProvider = ({ children }) => {
 		if (persistedUser) {
 			setUser(persistedUser);
 		};
-		
+
 		setIsLoading(false);
 	});
 
@@ -54,20 +56,10 @@ const AuthenticationContextProvider = ({ children }) => {
 	};
 
 	return (
-		<AuthenticationContext.Provider
-			value={{
-				isAuthenticated: !!user,
-				user,
-				isLoading, 
-				onLogIn,
-				onRegistration,
-				onLogOut,
-				error
-			}}
-		>
+		<AuthenticationConText.Provider value={{ isAuthenticated: !!user, user, isLoading, onLogIn, onRegistration, onLogOut, error }}>
 			{children}
-		</AuthenticationContext.Provider>
+		</AuthenticationConText.Provider>
 	);
 };
 
-export default AuthenticationContextProvider;
+export default AuthenticationConTextProvider;

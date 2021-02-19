@@ -1,44 +1,42 @@
 import styled from 'styled-components/native';
 
 const Text = styled.Text`
-	${({ theme }) => defaultTextStyles(theme)};
-	${({ variant, theme }) => variants[variant](theme)}
+	${({ theme }) => deFaultTextStyles(theme)};
+	${({ variant, theme }) => variants[variant](theme)};
 `;
 
-Text.defaultProps = {
-	variant: 'body'
-};
+Text.defaultProps = {variant: 'body'};
 
-const defaultTextStyles = theme => `
+const deFaultTextStyles = theme => `
 	flex-wrap: wrap;
 	margin-top: 0px;
 	margin-bottom: 0px;
 	font-weight: ${theme.fontWeights.regular};
 	font-family: ${theme.fonts.body};
-	color: ${theme.colours.text.primary}
+	color: ${theme.colours.text.primary};
 `;
 
 const body = theme => `
 	font-size: ${theme.fontSizes.body};
 `;
 
-const label = (theme) => `
+const label = theme => `
 	font-size: ${theme.fontSizes.body};
 	font-weight: ${theme.fontWeights.medium};
-	font-family: ${theme.fonts.heading}
+	font-family: ${theme.fonts.heading};
 `;
 
 const caption = theme => `
 	font-size: ${theme.fontSizes.caption};
-	font-weight: ${theme.fontWeights.bold}
+	font-weight: ${theme.fontWeights.bold};
 `;
 
 const hint = theme => `
-	font-size: ${theme.fontSizes.body}
+	font-size: ${theme.fontSizes.body};
 `;
 
 const error = theme => `
-	color: ${theme.colours.text.error}
+	color: ${theme.colours.text.error};
 `;
 
 const variants = {

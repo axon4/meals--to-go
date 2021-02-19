@@ -1,13 +1,13 @@
-const antwerp = require('./mockCities/antwerp.js');
-const chicago = require('./mockCities/chicago.js');
-const toronto = require('./mockCities/toronto.js');
-const san_francisco = require('./mockCities/san_francisco.js');
+const Antwerp = require('./mockCities/Antwerp.js');
+const Toronto = require('./mockCities/Toronto.js');
+const Chicago = require('./mockCities/Chicago.js');
+const SanFrancisco = require('./mockCities/SanFrancisco.js');
 
 module.exports.mockCities = {
-	'51.219448, 4.402464': antwerp,
-	'43.653225, -79.383186': toronto,
-	'41.878113, -87.629799': chicago,
-	'37.7749295, -122.4194155': san_francisco
+	'51.219448, 4.402464': Antwerp,
+	'43.653225, -79.383186': Toronto,
+	'41.878113, -87.629799': Chicago,
+	'37.7749295, -122.4194155': SanFrancisco
 };
 
 const mockPhotos = [

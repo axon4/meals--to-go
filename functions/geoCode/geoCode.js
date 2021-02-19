@@ -1,9 +1,9 @@
-const url = require('url');
+const NodeURL = require('url');
 const functions = require('firebase-functions');
 const { locations: mockLocations } = require('./mockLocations/locations.js');
 
-module.exports.getGeocode = (request, response, googleClient) => {
-	const { city, mock } = url.parse(request.url, true).query;
+module.exports.getGeoCode = (request, response, GoogleClient) => {
+	const { city, mock } = NodeURL.parse(request.url, true).query;
 
 	if (mock === 'true') {
 		const mockLocation = mockLocations[city.toLowerCase()];
@@ -11,7 +11,7 @@ module.exports.getGeocode = (request, response, googleClient) => {
 		return response.json(mockLocation);
 	};
 
-	googleClient.geocode({
+	GoogleClient.geocode({
 		params: {
 			key: functions.config().google.key,
 			address: city

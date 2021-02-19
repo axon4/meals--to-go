@@ -1,23 +1,21 @@
-module.exports.getPay = (request, response, stripeClient) => {
+module.exports.getPay = (request, response, StripeClient) => {
 	const body = JSON.parse(request.body);
 	const { token, amount } = body;
 
-	stripeClient.paymentIntents.create({
+	StripeClient.paymentIntents.create({
 		amount,
 		currency: 'GBP',
 		payment_method_types: ['card'],
 		payment_method_data: {
 			type: 'card',
-			card: {
-				token
-			}
+			card: { token }
 		},
 		confirm: true
 	})
-		.then(paymentIntent => response.json(paymentIntent))
+		.then(paymentInTent => response.json(paymentInTent))
 		.catch(error => {
 			response.status(400);
-			
+
 			return response.send(error);
 		});
 

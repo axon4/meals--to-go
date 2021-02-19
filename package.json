@@ -1,6 +1,8 @@
 {
-	"main": "node_modules/expo/AppEntry.js",
+	"name": "meals--to-go",
+	"version": "0.0.1",
 	"private": true,
+	"main": "node_modules/expo/AppEntry.js",
 	"scripts": {
 		"start": "expo start",
 		"ios": "expo start --ios",

@@ -1,9 +1,9 @@
 import React from 'react';
 import { TouchableOpacity, ScrollView } from 'react-native';
-import styled from 'styled-components/native';
 import { Card } from 'react-native-paper';
+import styled from 'styled-components/native';
 import Text from './Text.jsx';
-import SmallRestaurantDetails from '../components/SmallRestaurantDetails.jsx';
+import SmallRestaurantDeTails from './SmallRestaurantDeTails.jsx';
 
 const FavouritesBar = ({ favourites, onNavigate }) => {
 	if (favourites.length === 0) {
@@ -18,9 +18,9 @@ const FavouritesBar = ({ favourites, onNavigate }) => {
 					return (
 						<FavouriteContainer
 							key={restaurant.name}
-							onPress={() => onNavigate('RestaurantDetails', { restaurant })}
+							onPress={() => {onNavigate('RestaurantDetails', { restaurant })}}
 						>
-							<SmallRestaurantDetails restaurant={restaurant} />
+							<SmallRestaurantDeTails restaurant={restaurant} />
 						</FavouriteContainer>
 					);
 				})}
@@ -32,11 +32,11 @@ const FavouritesBar = ({ favourites, onNavigate }) => {
 const FavouritesContainer = styled(Card)`
 	z-index: 777;
 	padding: 10px;
-	border-radius: 5px
+	border-radius: 5px;
 `;
 
 const FavouriteContainer = styled(TouchableOpacity)`
-	margin-left: 12px
+	margin-left: 12px;
 `;
 
 export default FavouritesBar;

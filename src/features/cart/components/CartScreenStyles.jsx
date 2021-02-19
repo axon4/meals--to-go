@@ -7,14 +7,14 @@ import { colours } from '../../../infrastructure/theme/aspects/colours.js';
 export const CartIconContainer = styled.View`
 	flex: 1;
 	justify-content: center;
-	align-items: center
+	align-items: center;
 `;
 
 export const CartIcon = styled(Avatar.Icon).attrs({
 	size: 128
 })`
 	margin-bottom: ${props => props.theme.spacing[3]};
-	background-color: ${props => props.background || props.theme.colours.brand.primary}
+	background-color: ${props => props.background || props.theme.colours.brand.primary};
 `;
 
 export const PaymentProcessingIndicator = styled(ActivityIndicator).attrs({
@@ -25,16 +25,16 @@ export const PaymentProcessingIndicator = styled(ActivityIndicator).attrs({
 	z-index: 777;
 	position: absolute;
 	top: 50%;
-	left: 35%
+	left: 35%;
 `;
 
 export const Heading = styled(Text)`
-	margin: ${props => props.theme.spacing[2]}
+	margin: ${props => props.theme.spacing[2]};
 `;
 
-export const NameInput = styled(TextInput)`
+export const NameInPut = styled(TextInput)`
 	margin: ${props => props.theme.spacing[3]};
-	margin-bottom: ${props => props.theme.spacing[4]}
+	margin-bottom: ${props => props.theme.spacing[4]};
 `;
 
 export const PayButton = styled(Button).attrs({
@@ -44,7 +44,7 @@ export const PayButton = styled(Button).attrs({
 	width: 83%;
 	margin: ${props => props.theme.spacing[2]};
 	margin-top: ${props => props.theme.spacing[5]};
-	padding: ${props => props.theme.spacing[2]}
+	padding: ${props => props.theme.spacing[2]};
 `;
 
 export const ClearButton = styled(Button).attrs({
@@ -53,5 +53,5 @@ export const ClearButton = styled(Button).attrs({
 	align-self: center;
 	width: 83%;
 	margin: ${props => props.theme.spacing[2]};
-	padding: ${props => props.theme.spacing[2]}
+	padding: ${props => props.theme.spacing[2]};
 `;

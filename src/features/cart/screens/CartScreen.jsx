@@ -2,37 +2,37 @@ import React, { useState, useEffect, useContext } from 'react';
 import { ScrollView } from 'react-native';
 import { List, Divider } from 'react-native-paper';
 import styled from 'styled-components/native';
-import { CartContext } from '../../../services/cart/CartContext.jsx';
+import { CartConText } from '../../../services/cart/CartConText.jsx';
 import SafeArea from '../../../components/SafeArea.jsx';
-import { CartIconContainer, CartIcon, PaymentProcessingIndicator, Heading, NameInput, PayButton, ClearButton } from '../components/CartScreenStyles.jsx';
+import { CartIconContainer, CartIcon, PaymentProcessingIndicator, Heading, NameInPut, PayButton, ClearButton } from '../components/CartScreenStyles.jsx';
 import Text from '../../../components/Text.jsx';
 import RestaurantCard from '../../restaurants/components/RestaurantCard.jsx';
-import DebitCardInput from '../components/DebitCardInput.jsx';
-import { payRequest } from '../../../services/cart/cartService.js';
+import DebitCardInPut from '../components/DebitCardInPut.jsx';
+import { payReQuest } from '../../../services/cart/cartService.js';
 
 const CartScreen = ({ navigation }) => {
 	const [ name, setName ] = useState('');
 	const [ card, setCard ] = useState(null);
 	const [ isLoading, setIsLoading ] = useState(false);
-	const { restaurant, cart, total, clearCart } = useContext(CartContext);
+	const { restaurant, cart, total, clearCart } = useContext(CartConText);
 
 	const onPay = () => {
 		if (!card || !card.id) {
-			navigation.navigate('CartFailure', { error: 'Enter Valid Card' });
+			navigation.navigate('CartFailure', {error: 'Enter Valid Card'});
 
 			return;
 		};
 
 		setIsLoading(true);
-		payRequest(card.id, name, total)
-			.then(x => {
+		payReQuest(card.id, name, total)
+			.then(() => {
 				setIsLoading(false);
 				clearCart();
 				navigation.navigate('CartSuccess');
 			})
 			.catch(error => {
 				setIsLoading(false);
-				console.log(error);
+				console.error(error);
 				navigation.navigate('CartFailure', { error });
 			});
 	};
@@ -42,7 +42,7 @@ const CartScreen = ({ navigation }) => {
 			<SafeArea>
 				<CartIconContainer>
 					<CartIcon icon='cart-off' />
-					<Text>Your Cart Is Empty!</Text>
+					<Text>Cart Empty</Text>
 				</CartIconContainer>
 			</SafeArea>
 		);
@@ -54,22 +54,18 @@ const CartScreen = ({ navigation }) => {
 			<ScrollView>
 				<Heading>Your Order</Heading>
 				<List.Section>
-					{cart.map(({ item, price }, i) => {
-						return <List.Item key={i} title={`• ${item}: £${price / 100}`} />
-					})}
+					{cart.map(({ item, price }, index) => <List.Item key={index} title={`• ${item}: £${price / 100}`} />)}
 				</List.Section>
 				<Heading>Total: £{total / 100}</Heading>
 				<Divider />
-				<NameInput label='Name' value={name} onChangeText={input => setName(input)} />
+				<NameInPut label='Name' value={name} onChangeText={input => {setName(input)}} />
 				{name ? (
-					<DebitCardInput
+					<DebitCardInPut
 						name={name}
-						onSuccess={card => setCard(card)}
-						onFailure={() => navigation.navigate('CartFailure', {
-							error: 'Error Processing Card'
-						})}
+						onSuccess={card => {setCard(card)}}
+						onFailure={() => navigation.navigate('CartFailure', {error: 'Error Processing Card'})}
 					/>
-				 ) : null}
+				) : null}
 				<PayButton
 					icon='cash-register'
 					mode='contained'
